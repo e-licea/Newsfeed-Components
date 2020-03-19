@@ -85,6 +85,26 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'How to Wash Your Hands',
+    date: 'March 17th, 2020',
+    firstParagraph: `I'm gonna start with a little Alizarin crimson and a touch of Prussian blue How do you make a round circle with a square knife? That's your challenge for the day. Let your heart be your guide.
+`,
+
+    secondParagraph: `How to paint. That's easy. What to paint. That's much harder. Now we can begin working on lots of happy little things. We can fix anything. You can bend rivers. But when I get home, the only thing I have power over is the garbage. Just a happy little shadow that lives in there.`,
+
+    thirdParagraph: `I thought today we would make a happy little stream that's just running through the woods here. That's why I paint - because I can create the kind of world I want - and I can make this world as happy as I want it. Van Dyke Brown is a very nice brown, it's almost like a chocolate brown. You can do it.`
+  },
+  {
+    title: 'Cereal Before Milk or Milk Before Cereal?',
+    date: 'March 17th, 2020',
+    firstParagraph: `I'm gonna start with a little Alizarin crimson and a touch of Prussian blue How do you make a round circle with a square knife? That's your challenge for the day. Let your heart be your guide.
+`,
+
+    secondParagraph: `How to paint. That's easy. What to paint. That's much harder. Now we can begin working on lots of happy little things. We can fix anything. You can bend rivers. But when I get home, the only thing I have power over is the garbage. Just a happy little shadow that lives in there.`,
+
+    thirdParagraph: `I thought today we would make a happy little stream that's just running through the woods here. That's why I paint - because I can create the kind of world I want - and I can make this world as happy as I want it. Van Dyke Brown is a very nice brown, it's almost like a chocolate brown. You can do it.`
   }
 ];
 
@@ -112,3 +132,60 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+//Container Element
+let container = document.querySelector('body')
+//parent element
+
+let articleSpan = document.createElement('span');
+
+let componentCreator = (i)=>{
+  let articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
+  //child elements with their content
+  let articleTitle = document.createElement('h2');
+  articleTitle.textContent = data[i].title
+  articleDiv.appendChild(articleTitle);
+
+  let dateParagraph = document.createElement('p');
+  dateParagraph.textContent = data[i].date;
+  dateParagraph.classList.add('date')
+  articleDiv.appendChild(dateParagraph);
+
+  let article1stParagraph = document.createElement('p');
+  article1stParagraph.textContent = data[i].firstParagraph;
+  articleDiv.appendChild(article1stParagraph);
+
+  let article2ndParagraph = document.createElement('p');
+    article2ndParagraph.textContent = data[i].secondParagraph;
+  articleDiv.appendChild(article2ndParagraph);
+
+  let article3rdParagraph = document.createElement('p');
+  article3rdParagraph.textContent = data[i].thirdParagraph;
+  articleDiv.appendChild(article3rdParagraph);
+  
+  //button
+  let spanbtn = document.createElement('span');
+  spanbtn.textContent = '\u25bc'
+  spanbtn.classList.add('expandButton');
+  articleTitle.appendChild(spanbtn);
+  //Event Listener
+  spanbtn.addEventListener('click', ()=>{
+    console.log('clicked button!');
+    articleDiv.classList.toggle('article-open')
+    spanbtn.textContent.toggle()
+  })
+
+  container.appendChild(articleDiv);
+
+  return articleDiv
+
+  
+}
+
+for (let i = 0; i<data.length; i++){
+  componentCreator(i);
+}
+
+
